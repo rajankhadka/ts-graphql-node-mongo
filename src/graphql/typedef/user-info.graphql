@@ -1,0 +1,37 @@
+type UserInfo implements ITimeStamp{
+    id: ID!
+    username: String!
+    email: String!
+    password: String
+    isActive: Boolean!
+    createdAt: Date
+    updatedAt: Date
+    categories: [Category]!
+    products: [Product]!
+    comments: [Comment]!
+}
+
+type UpdateUserInfo implements ITimeStamp{
+    id: ID!
+    username: String!
+    email: String!
+    createdAt: Date
+    updatedAt: Date
+}
+
+input InputCreateUserInfo{
+    username: String!
+    email: String!
+    password: String!
+}
+
+input InputUpdateUserInfo{
+    username: String
+    email: String
+    password: String
+    id: ID!
+}
+
+input InputDeleteUserInfo{
+    id: ID!
+}

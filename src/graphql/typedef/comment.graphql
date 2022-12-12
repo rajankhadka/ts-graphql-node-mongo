@@ -1,0 +1,32 @@
+type Comment implements ITimeStamp {
+    id: ID!
+    commentName: String!
+    isActive: Boolean!
+
+    createdAt: Date
+    updatedAt: Date
+
+    userInfo: UserInfo
+    product: Product
+}
+
+type UpdateComment{
+    id: ID!
+    commentName: String!
+    isActive: Boolean!
+    createdAt: Date!
+    updatedAt: Date!
+}
+
+input InputCreateComment{
+    commentName: String!
+}
+
+input InputUdateComment{
+    id: ID!
+    commentName: String
+}
+
+input InputDeleteComment{
+    id: ID!
+}

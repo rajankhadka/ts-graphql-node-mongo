@@ -1,0 +1,10 @@
+scalar Date
+
+interface ITimeStamp{
+    createdAt: Date
+    updatedAt: Date
+}
+
+input FetchByIDInput{
+    id: ID!
+}

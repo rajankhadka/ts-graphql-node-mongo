@@ -1,0 +1,21 @@
+type Mutation{
+    # user operation
+    createUser(params: InputCreateUserInfo!): ID!
+    updateUser(params: InputUpdateUserInfo!): UpdateUserInfo
+    deleteUser(params: InputDeleteUserInfo!): ID!
+
+    # category operation
+    createCategory(params: InputCreateCategory!): ID!
+    updateCategory(params: InputUpdateCategory!): UpdateCategory
+    deleteCategory(params: InputDeleteCategory!): ID!
+
+    #product operation
+    createProduct(params: InputCreateProduct!): ID!
+    updateProduct(params: InputUpdateProduct!): UpdateProduct
+    deleteProduct(params: InputDeleteProduct!): ID! 
+
+    #comment operation
+    createComment(params: InputCreateComment!): ID! 
+    updateComment(params: InputUdateComment!): UpdateComment
+    deleteComment(params: InputDeleteComment!): ID!
+}

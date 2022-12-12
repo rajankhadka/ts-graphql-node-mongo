@@ -1,0 +1,13 @@
+type Query{
+    getUsers: [UserInfo]!
+    getUser(params: FetchByIDInput): UserInfo
+
+    getCategories: [Category]!
+    getCategory(params: FetchByIDInput): Category
+
+    getProducts: [Product]!
+    getProduct(params: FetchByIDInput): Product
+
+    getComments: [Comment]!
+    getComment(params: FetchByIDInput): Comment
+}
