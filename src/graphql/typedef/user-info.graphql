@@ -11,12 +11,14 @@ type UserInfo implements ITimeStamp{
     comments: [Comment]!
 }
 
-type UpdateUserInfo implements ITimeStamp{
+type UpdateUserInfo{
     id: ID!
-    username: String!
-    email: String!
-    createdAt: Date
-    updatedAt: Date
+    username: String
+    email: String
+}
+
+type CreateUserInfo {
+    id: ID!
 }
 
 input InputCreateUserInfo{

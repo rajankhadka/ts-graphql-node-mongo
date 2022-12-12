@@ -1,6 +1,6 @@
 type Mutation{
     # user operation
-    createUser(params: InputCreateUserInfo!): ID!
+    createUser(params: InputCreateUserInfo!): CreateUserInfo!
     updateUser(params: InputUpdateUserInfo!): UpdateUserInfo
     deleteUser(params: InputDeleteUserInfo!): ID!
 

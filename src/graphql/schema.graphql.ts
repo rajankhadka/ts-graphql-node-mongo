@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { resolvers } from './resolver/index.resolver';
 
 //read all graphql typeDefs file
 let typeDefs = '';
@@ -18,6 +19,7 @@ if(isExist){
 
 const schema = makeExecutableSchema({
     typeDefs,
+    resolvers
 });
 
 export default schema;
