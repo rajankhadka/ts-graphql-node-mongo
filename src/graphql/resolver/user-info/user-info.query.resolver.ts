@@ -4,6 +4,6 @@ export const userInfoQuery = {
         return userService.getUsers();
     },
     getUser: async (parent: any, {params}: any, ctx: any) => {
-        return userService.getUser(params.id);
+        return userService.getUser(params);
     }
 }

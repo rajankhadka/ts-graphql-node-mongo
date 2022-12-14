@@ -2,12 +2,12 @@ type Mutation{
     # user operation
     createUser(params: InputCreateUserInfo!): CreateUserInfo!
     updateUser(params: InputUpdateUserInfo!): UpdateUserInfo
-    deleteUser(params: InputDeleteUserInfo!): ID!
+    deleteUser(params: InputDeleteUserInfo!): DeleteUserInfo!
 
     # category operation
-    createCategory(params: InputCreateCategory!): ID!
+    createCategory(params: InputCreateCategory!): CreateCategory!
     updateCategory(params: InputUpdateCategory!): UpdateCategory
-    deleteCategory(params: InputDeleteCategory!): ID!
+    deleteCategory(params: InputDeleteCategory!): DeleteCategory!
 
     #product operation
     createProduct(params: InputCreateProduct!): ID!

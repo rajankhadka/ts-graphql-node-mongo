@@ -8,12 +8,16 @@ type Category implements ITimeStamp {
     userInfo: UserInfo
 }
 
-type UpdateCategory implements ITimeStamp{
+type CreateCategory{
     id: ID!
-    categoryName: String!
-    isActive: Boolean!
-    createdAt: Date!
-    updatedAt: Date!
+}
+
+type UpdateCategory {
+  id: ID!
+}
+
+type DeleteCategory {
+  id: ID!
 }
 
 input InputCreateCategory{

@@ -1,4 +1,10 @@
+import categoryService from "../../../service/category.service";
+
 export const cateoryQuery = {
-  getCategories: (parent: any, args: any, ctx: any) => {},
-  getCategory: (parent: any, args: any, ctx: any) => {}
+  getCategories: async(parent: any, args: any, ctx: any) => {
+    return categoryService.getCategories();
+  },
+  getCategory: (parent: any, {params}: any, ctx: any) => {
+    return categoryService.getCategory(params);
+  }
 };

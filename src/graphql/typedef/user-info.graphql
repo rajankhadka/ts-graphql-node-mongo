@@ -13,12 +13,14 @@ type UserInfo implements ITimeStamp{
 
 type UpdateUserInfo{
     id: ID!
-    username: String
-    email: String
 }
 
 type CreateUserInfo {
     id: ID!
+}
+
+type DeleteUserInfo {
+  id: ID!
 }
 
 input InputCreateUserInfo{
