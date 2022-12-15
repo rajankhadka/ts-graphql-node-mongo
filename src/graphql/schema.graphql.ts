@@ -18,8 +18,9 @@ if(isExist){
 
 
 const schema = makeExecutableSchema({
-    typeDefs,
-    resolvers
+    typeDefs: typeDefs,
+    resolvers,
 });
 
-export default schema;
+
+export {schema};
