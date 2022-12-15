@@ -10,12 +10,12 @@ type Mutation{
     deleteCategory(params: InputDeleteCategory!): DeleteCategory!
 
     #product operation
-    createProduct(params: InputCreateProduct!): ID!
+    createProduct(params: InputCreateProduct!): CreateProduct!
     updateProduct(params: InputUpdateProduct!): UpdateProduct
-    deleteProduct(params: InputDeleteProduct!): ID! 
+    deleteProduct(params: InputDeleteProduct!): DeleteProduct! 
 
     #comment operation
-    createComment(params: InputCreateComment!): ID! 
+    createComment(params: InputCreateComment!): CreateComment! 
     updateComment(params: InputUdateComment!): UpdateComment
-    deleteComment(params: InputDeleteComment!): ID!
+    deleteComment(params: InputDeleteComment!): DeleteComment!
 }

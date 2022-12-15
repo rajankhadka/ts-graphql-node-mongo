@@ -12,10 +12,14 @@ type Product implements ITimeStamp {
 
 type UpdateProduct{
     id: ID!
-    productName: String!
-    isActive: Boolean!
-    createdAt: Date!
-    updatedAt: Date!
+}
+
+type CreateProduct{
+    id: ID!
+}
+
+type DeleteProduct{
+    id: ID!
 }
 
 input InputCreateProduct{
