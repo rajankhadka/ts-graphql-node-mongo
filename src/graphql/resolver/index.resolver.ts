@@ -2,6 +2,7 @@ import { categoryMutationResolver } from "./category/category.mutation.resolver"
 import { cateoryQuery } from "./category/category.query.resolver";
 import { commentMutationResolver } from "./comment/comment.mutation.resolver";
 import { commentQueryResolver } from "./comment/comment.query.resolver";
+import { loginMutationResolver } from "./login.mutation.resolver";
 import productMutationResolver from "./product/product.mutation.resolver";
 import productQueryResolver from "./product/product.query.resolver";
 import { userInfoMutationResolver } from "./user-info/user-info.mutation.resolver";
@@ -18,6 +19,7 @@ export const resolvers = {
     ...userInfoMutationResolver,
     ...categoryMutationResolver,
     ...productMutationResolver,
-    ...commentMutationResolver
+    ...commentMutationResolver,
+    ...loginMutationResolver,
   },
 };

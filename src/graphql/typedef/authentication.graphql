@@ -1,0 +1,8 @@
+input InputLogin{
+    username: String!
+    password: String!
+}
+
+type Token{
+    token: String!
+}
