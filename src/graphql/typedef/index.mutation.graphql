@@ -18,6 +18,4 @@ type Mutation{
     createComment(params: InputCreateComment!): CreateComment! 
     updateComment(params: InputUdateComment!): UpdateComment
     deleteComment(params: InputDeleteComment!): DeleteComment!
-
-    login(params: InputLogin!): Token!
 }

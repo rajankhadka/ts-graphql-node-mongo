@@ -6,7 +6,6 @@ import {schema} from './graphql/schema.graphql';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import mongoose from 'mongoose';
-import * as dbModel from './model/index.model';
 import authenticationService from './service/authentication.service';
 class Server{
     app;
@@ -27,13 +26,16 @@ class Server{
         await this.server.start();
         this.app.use("/graphql",expressMiddleware(this.server, {
             context: async ({req, res}) => {
-                return req;
+                return { _req: (fieldName: string) => {} };
             },
         }));
         this.httpServer.listen(4000, () => console.log("server running"));
     }
 }
 
+const auth = (fieldName: string, ) => {
+
+}
 
 const server = new Server();
 server.listen()

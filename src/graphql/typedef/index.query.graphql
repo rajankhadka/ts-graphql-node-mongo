@@ -10,4 +10,6 @@ type Query{
 
     getComments: [Comment]!
     getComment(params: FetchByIDInput): Comment
+
+    login(params: InputLogin!): Token!
 }

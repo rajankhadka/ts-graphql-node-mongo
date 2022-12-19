@@ -22,6 +22,8 @@ class AuthenticationService{
         const payload = jwt.verify(token, 'graphql');
         return payload;
     }
+
+    
 }
 
 const authenticationService = new AuthenticationService();
