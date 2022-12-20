@@ -2,6 +2,9 @@ type Query{
     getUsers: [UserInfo]!
     getUser(params: FetchByIDInput): UserInfo
 
+    # authenticated user
+    getAuthUser: UserInfo!
+
     getCategories: [Category]!
     getCategory(params: FetchByIDInput): Category
 
@@ -10,4 +13,6 @@ type Query{
 
     getComments: [Comment]!
     getComment(params: FetchByIDInput): Comment
+
+    login(params: InputLogin!): Token!
 }

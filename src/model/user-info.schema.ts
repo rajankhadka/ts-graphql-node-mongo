@@ -1,4 +1,5 @@
 import mongoose, { Schema, SchemaTypes } from "mongoose";
+import { hashedPassword } from "../utils/hashing-password";
 
 const UserInfoSchema = new Schema(
   {
@@ -43,6 +44,25 @@ const UserInfoSchema = new Schema(
   },
   { collection: "user_info" }
 );
+
+
+//pre middleware
+UserInfoSchema.pre('save', function(next){
+  if(this.isModified('password') && this?.password){
+    this.password = hashedPassword(this.password);
+  }
+  return next();
+});
+
+UserInfoSchema.set('toJSON', {
+  transform: function(doc, obj){
+    delete obj.password;
+    return obj;
+  }
+})
+
+
+
 const UserInfoModel = mongoose.model("user_info", UserInfoSchema);
 
 export { UserInfoModel };

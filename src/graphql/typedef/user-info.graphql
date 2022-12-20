@@ -2,7 +2,6 @@ type UserInfo implements ITimeStamp{
     id: ID!
     username: String!
     email: String!
-    password: String
     isActive: Boolean!
     createdAt: Date
     updatedAt: Date
@@ -34,6 +33,12 @@ input InputUpdateUserInfo{
     email: String
     password: String
     id: ID!
+}
+
+input InputAuthUpdateUserInfo {
+  username: String
+  email: String
+  password: String
 }
 
 input InputDeleteUserInfo{

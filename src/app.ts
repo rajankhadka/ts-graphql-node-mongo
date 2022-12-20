@@ -6,28 +6,8 @@ import {schema} from './graphql/schema.graphql';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import mongoose from 'mongoose';
-import * as dbModel from './model/index.model';
-
-
-// async function main(){
-//     try {
-//         const app = express();
-//         const httpServer = http.createServer(app);
-//         app.use(express.json());
-//         const server = new ApolloServer({schema});
-//         await server.start();
-//         app.use('/graphql', expressMiddleware(server));
-//         httpServer.listen(4000, () => console.log("server running"));
-
-//     } catch (error) {
-//         console.log(error);
-//         process.exit(1);
-//     }
-
-// }
-// main();
-
-
+import authenticationService from './service/authentication.service';
+import { verifyJwt } from './utils/jwt.utils';
 class Server{
     app;
     server;
@@ -45,11 +25,21 @@ class Server{
 
     async listen(){
         await this.server.start();
-        this.app.use("/graphql", expressMiddleware(this.server));
+        this.app.use("/graphql",expressMiddleware(this.server, {
+            context: async ({req, res}) => {
+                let token = req?.headers?.authorization ?? null;
+                if(token) token = token.split(' ')[1];
+                if (!token) return { isAuthenticated: false, payload: {}, message: '', error: 'Token needed' };
+                return authenticationService.jwtVerify(token); 
+            },
+        }));
         this.httpServer.listen(4000, () => console.log("server running"));
     }
 }
 
+const auth = (fieldName: string, ) => {
+
+}
 
 const server = new Server();
 server.listen()
