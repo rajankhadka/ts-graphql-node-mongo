@@ -14,4 +14,9 @@ export const userInfoMutationResolver = {
     await userInfoByIdValidationSchema.validateAsync(params);
     return userService.deleteUser(params);
   },
+  authUpdateUser: async(parent: any, {params}: any, {isAuthenticate, error, payload}: any, info: any) => {
+    if(!isAuthenticate) throw new Error(error);
+    await userInfoUpdateValidationSchema.validateAsync({...params, id: payload.sub});
+    return userService.updateUser({...params, id: payload.sub});
+  }
 };

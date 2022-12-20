@@ -4,6 +4,8 @@ type Mutation{
     updateUser(params: InputUpdateUserInfo!): UpdateUserInfo
     deleteUser(params: InputDeleteUserInfo!): DeleteUserInfo!
 
+    authUpdateUser(params: InputAuthUpdateUserInfo!): UpdateUserInfo
+
     # category operation
     createCategory(params: InputCreateCategory!): CreateCategory!
     updateCategory(params: InputUpdateCategory!): UpdateCategory

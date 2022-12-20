@@ -27,9 +27,9 @@ class Server{
         await this.server.start();
         this.app.use("/graphql",expressMiddleware(this.server, {
             context: async ({req, res}) => {
-
-                const token = req?.headers?.authorization ?? null;
-                if (!token) return { isAuthenticated: false, payload: {} };
+                let token = req?.headers?.authorization ?? null;
+                if(token) token = token.split(' ')[1];
+                if (!token) return { isAuthenticated: false, payload: {}, message: '', error: 'Token needed' };
                 return authenticationService.jwtVerify(token); 
             },
         }));

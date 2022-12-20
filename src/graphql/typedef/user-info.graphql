@@ -35,6 +35,12 @@ input InputUpdateUserInfo{
     id: ID!
 }
 
+input InputAuthUpdateUserInfo {
+  username: String
+  email: String
+  password: String
+}
+
 input InputDeleteUserInfo{
     id: ID!
 }
