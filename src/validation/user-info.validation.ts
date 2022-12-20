@@ -5,7 +5,7 @@ export const userInfoValidationSchema = Joi.object({
   password: Joi.string()
     .pattern(
       new RegExp(
-        /(?=^.{8,16}$)(?=.*\d+)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]+).*$/
+        "(?=^.{8,16}$)(?=.*\d+)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]+).*$"
       )
     )
     .min(8)

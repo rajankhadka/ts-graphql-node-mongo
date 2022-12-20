@@ -7,7 +7,7 @@ import { resolvers } from './resolver/index.resolver';
 let typeDefs = '';
 
 //read all files from typeDefs directory
-const filePath = path.join(__dirname, './typedef');
+const filePath = path.join(__dirname, 'typedef');
 const isExist = fs.existsSync(filePath);
 if(isExist){
     const files = fs.readdirSync(filePath, {encoding: 'utf-8'});
