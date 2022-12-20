@@ -1,6 +1,7 @@
 import userService from './user-info.service';
 import {validatedPassword} from '../utils/hashing-password';
 import jwt from 'jsonwebtoken';
+import { verifyJwt } from '../utils/jwt.utils';
 class AuthenticationService{
     constructor() {}
 
@@ -10,7 +11,7 @@ class AuthenticationService{
         const verifyPassword = validatedPassword((foundUser.password)!, password);
         if(!verifyPassword) throw new Error("cannot authentixate");;
         
-        return this.jwtSign({username, id: foundUser.id});
+        return this.jwtSign({username, sub: foundUser.id});
     }
 
     jwtSign(data: any){
@@ -18,9 +19,16 @@ class AuthenticationService{
         return {token};
     }
 
-    jwtVerify(token: string){
-        const payload = jwt.verify(token, 'graphql');
-        return payload;
+    async jwtVerify(token: string){
+        try {
+            const payload: any = verifyJwt(token);
+            if(payload.error) throw new Error(payload.error);
+            const foundUser = await userService.getUser({id: payload.sub?.toString()});
+            if(!foundUser) throw new Error('RunTime Exception');
+            return {isAuthenticate: true, payload, message: 'successfull', error: ''};
+        } catch (error: any) {
+            return {isAuthenticate: false, payload: {}, mesage: '', error: error.message};
+        }
     }
 
     

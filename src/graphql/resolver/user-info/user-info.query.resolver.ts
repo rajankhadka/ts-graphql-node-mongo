@@ -4,7 +4,8 @@ export const userInfoQuery = {
     getUsers: async (parent: any, args: any, ctx: any) => {
         return userService.getUsers();
     },
-    getUser: async (parent: any, {params}: any, ctx: any) => {
+    getUser: async (parent: any, {params}: any, {isAuthenticate, error}: any) => {
+        if(!isAuthenticate) throw new Error(error); 
         await userInfoByIdValidationSchema.validateAsync(params);
         return userService.getUser(params);
     }

@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 import mongoose from 'mongoose';
 import authenticationService from './service/authentication.service';
+import { verifyJwt } from './utils/jwt.utils';
 class Server{
     app;
     server;
@@ -26,7 +27,10 @@ class Server{
         await this.server.start();
         this.app.use("/graphql",expressMiddleware(this.server, {
             context: async ({req, res}) => {
-                return { _req: (fieldName: string) => {} };
+
+                const token = req?.headers?.authorization ?? null;
+                if (!token) return { isAuthenticated: false, payload: {} };
+                return authenticationService.jwtVerify(token); 
             },
         }));
         this.httpServer.listen(4000, () => console.log("server running"));
