@@ -1,12 +1,36 @@
 import commentService from "../../../service/comment.service";
 export const commentMutationResolver = {
-  createComment: async (parent: any, {params}: any, ctx: any) => {
-    return await commentService.createComment(params);
+  createComment: async (
+    parent: any,
+    { params }: any,
+    { isAuthenticate, error, payload }: any
+  ) => {
+    if (!isAuthenticate) throw new Error(error);
+    return await commentService.createComment({
+      ...params,
+      userId: payload.sub,
+    });
   },
-  updateComment: async (parent: any, {params}: any, ctx: any) => {
-    return await commentService.updateComment(params);
+  updateComment: async (
+    parent: any,
+    { params }: any,
+    { isAuthenticate, error, payload }: any
+  ) => {
+    if (!isAuthenticate) throw new Error(error);
+    return await commentService.updateComment({
+      ...params,
+      userId: payload.sub,
+    });
   },
-  deleteComment: async (parent: any, {params}: any, ctx: any) => {
-    return await commentService.deleteComment(params);
+  deleteComment: async (
+    parent: any,
+    { params }: any,
+    { isAuthenticate, error, payload }: any
+  ) => {
+    if (!isAuthenticate) throw new Error(error);
+    return await commentService.deleteComment({
+      ...params,
+      userId: payload.sub,
+    });
   },
 };

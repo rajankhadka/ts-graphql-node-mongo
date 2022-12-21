@@ -23,6 +23,7 @@ type DeleteComment{
 
 input InputCreateComment{
     commentName: String!
+    productName: String!
 }
 
 input InputUdateComment{

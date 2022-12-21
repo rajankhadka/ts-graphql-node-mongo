@@ -1,6 +1,7 @@
 import { categoryFieldResolver } from "./category/category.field.resolver";
 import { categoryMutationResolver } from "./category/category.mutation.resolver";
 import { cateoryQuery } from "./category/category.query.resolver";
+import { commentFieldResolver } from "./comment/comment.field.resolver";
 import { commentMutationResolver } from "./comment/comment.mutation.resolver";
 import { commentQueryResolver } from "./comment/comment.query.resolver";
 import { loginQueryResolver } from "./login.query.resolver";
@@ -27,5 +28,6 @@ export const resolvers = {
   },
   ...userInfoCategoryFieldResolver,
   ...categoryFieldResolver,
-  ...productFieldResolver
+  ...productFieldResolver,
+  ...commentFieldResolver,
 };
