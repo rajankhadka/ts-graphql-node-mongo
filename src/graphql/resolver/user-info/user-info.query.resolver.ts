@@ -10,4 +10,3 @@ export const userInfoQuery = {
         return userService.getUser({id: payload.sub});
     }
 }
-

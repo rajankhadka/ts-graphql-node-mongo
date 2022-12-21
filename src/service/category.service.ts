@@ -31,6 +31,12 @@ class CategoryService {
     await CategoryModel.deleteOne({id: params.id});
     return {id: params.id};
   };
+
+  async getCategoryByName(params: any){
+    const foundCategory = await CategoryModel.findOne({categoryName: params.categoryName}, {categoryName: 1, _id: 1});
+    if(!foundCategory) throw new Error('No Category Exist');
+    return foundCategory;
+  }
 }
 
 const categoryService = new CategoryService();

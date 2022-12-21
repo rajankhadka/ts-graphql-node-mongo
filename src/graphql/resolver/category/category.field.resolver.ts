@@ -1,3 +1,4 @@
+import productService from "../../../service/product.service";
 import userService from "../../../service/user-info.service";
 
 export const categoryFieldResolver = {
@@ -5,6 +6,13 @@ export const categoryFieldResolver = {
         userInfo: (parent: any, args: any, {isAuthenticate, error}: any) => {
             if(!isAuthenticate) throw new Error(error);
             return userService.getUser({id: parent.userId});
+        },
+        products: (parent: any, args: any, {isAuthenticate, error, payload}: any) => {
+            if (!isAuthenticate) throw new Error(error);
+            return productService.getProductByUserIdAndCategoryId({
+              categoryId: parent._id,
+              userId: parent.userId,
+            });
         }
     }
 }

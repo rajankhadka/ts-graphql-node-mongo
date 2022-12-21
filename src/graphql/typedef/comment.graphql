@@ -2,10 +2,8 @@ type Comment implements ITimeStamp {
     id: ID!
     commentName: String!
     isActive: Boolean!
-
     createdAt: Date
     updatedAt: Date
-
     userInfo: UserInfo
     product: Product
 }

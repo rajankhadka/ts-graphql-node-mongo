@@ -1,23 +1,25 @@
 import { ProductModel } from "../model/index.model";
+import categoryService from "./category.service";
 
 class ProductService {
   constructor() {}
 
-  async getProducts() {
-    return await ProductModel.find({}, {userId: 0, categoryId: 0});
+  async getProducts(params: any) {
+    return await ProductModel.find({userId: params.userId});
   }
 
   async getProduct(params: any) {
-    return await ProductModel.findById(params.id, {userId: 0, categoryId: 0});
+    return await ProductModel.findOne({_id: params.id, userId: params.userId});
   }
 
   async createProduct(params: any) {
-    const product = await ProductModel.create({...params});
+    const foundCategory = await categoryService.getCategoryByName({categoryName: params.categoryName});
+    const product = await ProductModel.create({ productName: params.productName, categoryId: foundCategory._id, userId: params.userId });
     return {id: product._id};
   }
 
   async updateProduct(params: any){
-    const foundCategory = await ProductModel.findById(params.id);
+    const foundCategory = await ProductModel.findOne({_id:params.id, userId: params.userId});
     if (!foundCategory) throw new Error("product doesnot exist");
     const obj: { [key: string]: any } = {};
     for (const key in params) {
@@ -31,9 +33,14 @@ class ProductService {
   async deleteProduct(params: any){
     const foundItem = await this.getProduct(params);
     if(!foundItem) throw new Error('product not found');
-    await ProductModel.deleteOne({id: params.id});
+    await ProductModel.deleteOne({_id: params.id, userId: params.userId});
     return {id: foundItem._id};
   };
+
+  async getProductByUserIdAndCategoryId(params: any){
+    const foundItem = await ProductModel.find({userId: params.userId, categoryId: params.categoryId});
+    return foundItem.length ? foundItem : [];
+  }
 }
 
 const productService = new ProductService();
