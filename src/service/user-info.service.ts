@@ -13,7 +13,7 @@ class UserService {
 
   async getUser(params: IUserInfoFetch) {
 
-      const user = await UserInfoModel.findById(params.id);
+      const user = await UserInfoModel.findOne({_id: params.id}, {password: 0});
       return user;
     
   }

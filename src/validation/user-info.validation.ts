@@ -3,11 +3,7 @@ import Joi from "joi";
 export const userInfoValidationSchema = Joi.object({
   username: Joi.string().min(3).max(15).required(),
   password: Joi.string()
-    .pattern(
-      new RegExp(
-        "(?=^.{8,16}$)(?=.*\d+)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]+).*$"
-      )
-    )
+    .pattern(/^(?=.*[A-Z]){1,}(?=.*[!@#$%^&*()-__+.])(?=.*[0-9].*[0-9]){1,}(?=.*[a-z]){1,}.{8,16}$/)
     .min(8)
     .max(16)
     .required()
@@ -21,11 +17,7 @@ export const userInfoValidationSchema = Joi.object({
 export const userInfoUpdateValidationSchema = Joi.object({
   username: Joi.string().min(3).max(15).optional(),
   password: Joi.string()
-    .pattern(
-      new RegExp(
-        "(?=^.{8,16}$)(?=.*d+)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]+).*$"
-      )
-    )
+    .pattern(/^(?=.*[A-Z]){1,}(?=.*[!@#$%^&*()-__+.])(?=.*[0-9].*[0-9]){1,}(?=.*[a-z]){1,}.{8,16}$/)
     .min(8)
     .max(16)
     .optional()

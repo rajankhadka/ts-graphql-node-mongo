@@ -1,9 +1,6 @@
 type Query{
     getUsers: [UserInfo]!
-    getUser(params: FetchByIDInput): UserInfo
-
-    # authenticated user
-    getAuthUser: UserInfo!
+    getUser: UserInfo
 
     getCategories: [Category]!
     getCategory(params: FetchByIDInput): Category

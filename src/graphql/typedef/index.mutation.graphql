@@ -2,9 +2,7 @@ type Mutation{
     # user operation
     createUser(params: InputCreateUserInfo!): CreateUserInfo!
     updateUser(params: InputUpdateUserInfo!): UpdateUserInfo
-    deleteUser(params: InputDeleteUserInfo!): DeleteUserInfo!
-
-    authUpdateUser(params: InputAuthUpdateUserInfo!): UpdateUserInfo
+    deleteUser: DeleteUserInfo!
 
     # category operation
     createCategory(params: InputCreateCategory!): CreateCategory!

@@ -1,10 +1,9 @@
 import { CategoryModel } from '../model/index.model';
-import { SchemaTypes } from 'mongoose';
 class CategoryService {
   constructor() {}
 
   async getCategories(params: any) {
-    return await CategoryModel.find({userId: params.userId }, { userId: 0 });
+    return await CategoryModel.find({userId: params.userId });
   }
 
   async getCategory(params: any) {
