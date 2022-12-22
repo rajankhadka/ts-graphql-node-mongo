@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  graphql-service: 
+    image: graphql-image
+    container_name: graphql-container
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - 5000:4000
+    volumes:
+      - "/app/node_modules"
+      - "./:/app"
+    networks:
+      - graphql-networks
+    depends_on:
+      - mongo
+    environment:
+      MONGO_HOST: mongo
+      MONGO_PORT: 27017
+  
+  mongo:
+    image: mongo:5
+    container_name: graphql-db
+    volumes:
+      - "graphql-volume:/data/db:rw"
+      - "./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      - graphql-networks
+    restart: always
+
+volumes:
+  graphql-volume:
+
+networks:
+  graphql-networks:
+    name: graphql-networks
+    driver: bridge
+

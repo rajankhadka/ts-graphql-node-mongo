@@ -104,9 +104,14 @@
       // "@src/*": ["src/*"],
       "interface/*": ["interface/*"],
       "*": ["node_modules/*"],
-    }
+    }, 
   },
   "include": [
     "src/**/*",
-  ]
+  ],
+  "exclude": [
+    "src/graphql/typedefs/*.graphql"
+  ],
+  "hooks": [ "copy-files" ] 
+  
 }

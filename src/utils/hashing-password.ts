@@ -2,10 +2,23 @@ import * as path from 'path';
 import * as dotenv from "dotenv";
 import crypto from 'crypto';
 
-const envPath =
-  process.env.NODE_ENV === "dev"
-    ? path.resolve(process.cwd(), ".dev.env")
-    : path.resolve(process.cwd(), ".home.env");
+let envPath = "";
+switch (process.env.NODE_ENV) {
+  case "dev":
+    envPath = path.resolve(process.cwd(), "dev.env");
+    console.log(path.resolve(process.cwd(), "dev.env"));
+    break;
+  case "home":
+    envPath = path.resolve(process.cwd(), "home.env");
+    
+    break;
+  case "prod-test":
+    envPath = path.resolve(process.cwd(), "dev.env");
+    break;
+  default:
+    console.log(path.resolve(process.cwd(), "dev.env"));
+    throw new Error("cannot load env file");
+}
 dotenv.config({
   path: envPath,
 });
