@@ -1,10 +1,11 @@
+import ICtx from "interface/ctx.interface";
 import categoryService from "../../../service/category.service";
 
 export const categoryMutationResolver = {
   createCategory: async (
     parent: any,
     { params }: any,
-    { isAuthenticate, error, payload }: any
+    { isAuthenticate, error, payload }: ICtx
   ) => {
     if (!isAuthenticate) throw new Error(error);
     return categoryService.createCategory({ ...params, userId: payload.sub });
@@ -12,7 +13,7 @@ export const categoryMutationResolver = {
   updateCategory: async (
     parent: any,
     { params }: any,
-    { isAuthenticate, error, payload }: any
+    { isAuthenticate, error }: ICtx
   ) => {
     if (!isAuthenticate) throw new Error(error);
     return categoryService.updateCategory(params);
@@ -20,7 +21,7 @@ export const categoryMutationResolver = {
   deleteCategory: async (
     parent: any,
     { params }: any,
-    { isAuthenticate, error, payload }: any
+    { isAuthenticate, error }: ICtx
   ) => {
     if (!isAuthenticate) throw new Error(error);
     return categoryService.deleteCategory(params);

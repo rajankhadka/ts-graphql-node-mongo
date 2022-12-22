@@ -7,24 +7,29 @@ import * as dotenv from "dotenv";
 import * as path from "path";
 import mongoose from "mongoose";
 import authenticationService from "./service/authentication.service";
-import { verifyJwt } from "./utils/jwt.utils";
+
+
+const envPath =
+  process.env.NODE_ENV === "dev"
+    ? path.resolve(process.cwd(), ".dev.env")
+    : path.resolve(process.cwd(), ".home.env");
+dotenv.config({
+  path: envPath,
+});
+
+
 class Server {
   app;
   server;
   httpServer;
   constructor() {
-    const envPath =
-      process.env.NODE_ENV === "dev"
-        ? path.resolve(process.cwd(), ".env")
-        : path.resolve(process.cwd(), ".home.env");
-    console.log(envPath);
+    
     this.app = express();
     this.httpServer = http.createServer(this.app);
     this.app.use(express.json());
     this.server = new ApolloServer({ schema: schema });
-    dotenv.config({
-      path: "/Users/rajankhadka/Desktop/backend-service/graphql/small-ecommerce/.home.env",
-    });
+    
+    
     const mongoUrl = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
     mongoose
       .connect(mongoUrl)

@@ -1,13 +1,14 @@
 import commentService from "../../../service/comment.service";
 import categoryService from "../../../service/category.service";
 import userService from "../../../service/user-info.service";
+import ICtx from "interface/ctx.interface";
 
 export const productFieldResolver = {
   Product: {
     userInfo: (
       parent: any,
       args: any,
-      { isAuthenticate, error, payload }: any
+      { isAuthenticate, error }: ICtx
     ) => {
       if (!isAuthenticate) throw new Error(error);
       return userService.getUser({ id: parent.userId });
@@ -15,7 +16,7 @@ export const productFieldResolver = {
     category: (
       parent: any,
       args: any,
-      { isAuthenticate, error, payload }: any
+      { isAuthenticate, error }: ICtx
     ) => {
       if (!isAuthenticate) throw new Error(error);
       return categoryService.getCategory({
@@ -26,7 +27,7 @@ export const productFieldResolver = {
     comments: (
       parent: any,
       args: any,
-      { isAuthenticate, error, payload }: any
+      { isAuthenticate, error }: ICtx
     ) => {
       if (!isAuthenticate) throw new Error(error);
       return commentService.getCommentByProductId({ productId: parent._id });

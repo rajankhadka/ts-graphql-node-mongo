@@ -1,5 +1,5 @@
 import mongoose, { Schema, SchemaTypes } from "mongoose";
-import { hashedPassword } from "../utils/hashing-password";
+import passwordUtils from "../utils/hashing-password";
 
 const UserInfoSchema = new Schema(
   {
@@ -49,7 +49,7 @@ const UserInfoSchema = new Schema(
 //pre middleware
 UserInfoSchema.pre('save', function(next){
   if(this.isModified('password') && this?.password){
-    this.password = hashedPassword(this.password);
+    this.password = passwordUtils.hashedPassword(this.password);
   }
   return next();
 });

@@ -1,9 +1,10 @@
+import ICtx from "interface/ctx.interface";
 import commentService from "../../../service/comment.service";
 export const commentMutationResolver = {
   createComment: async (
     parent: any,
     { params }: any,
-    { isAuthenticate, error, payload }: any
+    { isAuthenticate, error, payload }: ICtx
   ) => {
     if (!isAuthenticate) throw new Error(error);
     return await commentService.createComment({
@@ -14,7 +15,7 @@ export const commentMutationResolver = {
   updateComment: async (
     parent: any,
     { params }: any,
-    { isAuthenticate, error, payload }: any
+    { isAuthenticate, error, payload }: ICtx
   ) => {
     if (!isAuthenticate) throw new Error(error);
     return await commentService.updateComment({
@@ -25,7 +26,7 @@ export const commentMutationResolver = {
   deleteComment: async (
     parent: any,
     { params }: any,
-    { isAuthenticate, error, payload }: any
+    { isAuthenticate, error, payload }: ICtx
   ) => {
     if (!isAuthenticate) throw new Error(error);
     return await commentService.deleteComment({

@@ -1,5 +1,5 @@
 import userService from './user-info.service';
-import {validatedPassword} from '../utils/hashing-password';
+import passwordUtils from '../utils/hashing-password';
 import jwt from 'jsonwebtoken';
 import { verifyJwt } from '../utils/jwt.utils';
 class AuthenticationService{
@@ -8,7 +8,10 @@ class AuthenticationService{
     async login(username: string, password: string){
         const foundUser = await userService.getUserByUserName(username);
         if(!foundUser) throw new Error('cannot authentixate');
-        const verifyPassword = validatedPassword((foundUser.password)!, password);
+        const verifyPassword = passwordUtils.validatedPassword(
+          foundUser.password!,
+          password
+        );
         if(!verifyPassword) throw new Error("cannot authentixate");;
         
         return this.jwtSign({username, sub: foundUser.id});
