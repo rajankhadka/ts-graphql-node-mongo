@@ -5,6 +5,7 @@ class ProductService {
   constructor() {}
 
   async getProducts(params: any) {
+    console.log("====== product ======");
     return await ProductModel.find({ userId: params.userId });
   }
 
@@ -49,6 +50,7 @@ class ProductService {
   }
 
   async getProductByUserIdAndCategoryId(params: any) {
+    console.log("====== product ======");
     const foundItem = await ProductModel.find({
       userId: params.userId,
       categoryId: params.categoryId,

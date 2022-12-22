@@ -3,10 +3,12 @@ class CategoryService {
   constructor() {}
 
   async getCategories(params: any) {
+    console.log("======== categories ==========");
     return await CategoryModel.find({userId: params.userId });
   }
 
   async getCategory(params: any) {
+    console.log("======== get category ======");
     return await CategoryModel.findOne({_id: params.id, userId: params.userId});
   }
 

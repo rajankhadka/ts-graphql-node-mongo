@@ -7,6 +7,7 @@ export const userInfoQuery = {
     },
     getUser: async (_: any, __: any, {isAuthenticate, error, payload}: ICtx) => {
         if(!isAuthenticate) throw new Error(error); 
+        console.log("====== user =====");
         await userInfoByIdValidationSchema.validateAsync({id: payload.sub});
         return userService.getUser({id: payload.sub});
     }

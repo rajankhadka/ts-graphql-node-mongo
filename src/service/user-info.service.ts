@@ -19,6 +19,7 @@ class UserService {
       { _id: params.id },
       { password: 0 }
     );
+    
     return user;
   }
 
